@@ -25,7 +25,7 @@ module SimpleStore
       puts 'ROLLBACK // revert to state prior to BEGIN call'
       puts 'EXIT // exits Simple Store'
 
-      begin do
+      loop do
         puts "What would you like to do?"
         get_current_command
 
@@ -34,7 +34,10 @@ module SimpleStore
           next
         end
 
-        exit if exiting?
+        if exiting?
+          puts 'Thank you for using Simple Store'
+          break
+        end
       end
     end
 
@@ -46,10 +49,6 @@ module SimpleStore
 
     def get_current_command
       @command = gets.chomp
-    end
-
-    def exit
-
     end
 
     def exiting?

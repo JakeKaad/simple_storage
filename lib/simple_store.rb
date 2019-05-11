@@ -1,4 +1,4 @@
-require 'simple_store/engine'
+require_relative 'simple_store/engine'
 
 module SimpleStore
 end
