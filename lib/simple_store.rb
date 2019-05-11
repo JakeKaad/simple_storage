@@ -9,6 +9,10 @@ module SimpleStore
     configuration.store
   end
 
+  def self.transaction_store
+    configuration.transcation_store
+  end
+
   def self.configuration
     @configuration ||= Configuration.new
   end

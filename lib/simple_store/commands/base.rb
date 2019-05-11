@@ -9,9 +9,15 @@ module SimpleStore
         @arguments = arguments
       end
 
-      def store
-        @store ||= open_storage
+      def exit?
+        false
       end
+
+      def valid?
+        true
+      end
+
+      private
 
       def key
         @key ||= arguments.match(FIRST_WORD_REGEXP).to_s
@@ -21,26 +27,43 @@ module SimpleStore
         @value ||= arguments.gsub("#{key} ", '')
       end
 
-      def exit?
-        false
+      def store
+        @store ||= open_storage(SimpleStore.store)
       end
 
-      def valid?
-        true
+      def transaction_store
+        @transaction_store ||= open_storage(SimpleStore.transaction_store)
       end
 
+      def open_storage(path)
+        JSON.parse(File.read(path))
+      rescue
+        {}
+      end
+
+      def stores
+        store.merge(transaction_store)
+      end
+
+      # TODO delegate storage logic to its own modulea
       def save
         File.open(SimpleStore.store, "w+") do |file|
           file << store.to_json
         end
       end
 
-      private
+      def save_to_transaction
+        File.open(SimpleStore.transaction_store, "w+") do |file|
+          file << transaction_store.to_json
+        end
+      end
 
-      def open_storage
-        JSON.parse(File.read(SimpleStore.store))
-      rescue
-        {}
+      def in_transaction?
+        File.exists?(SimpleStore.transaction_store)
+      end
+
+      def end_transaction
+        File.delete(SimpleStore.transaction_store) if in_transaction?
       end
     end
   end

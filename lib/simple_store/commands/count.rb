@@ -6,7 +6,7 @@ module SimpleStore
           val == value
         end.size
 
-        puts "There are #{size} entries for #{value}."
+        puts "=> There are #{size} entries for #{value}."
       end
     end
   end

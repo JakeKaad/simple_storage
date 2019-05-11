@@ -2,6 +2,9 @@ require_relative 'commands/base'
 require_relative 'commands/set'
 require_relative 'commands/get'
 require_relative 'commands/delete'
+require_relative 'commands/begin'
+require_relative 'commands/rollback'
+require_relative 'commands/commit'
 require_relative 'commands/count'
 require_relative 'commands/null'
 require_relative 'commands/exit'
@@ -14,9 +17,9 @@ module SimpleStore
       'GET' => Get,
       'DELETE' => Delete,
       'COUNT' => Count,
-      'BEGIN' => 'Begin',
-      'COMMIT' => 'Commit',
-      'ROLLBACK' => 'Rollback',
+      'BEGIN' => Begin,
+      'COMMIT' => Commit,
+      'ROLLBACK' => Rollback,
       'EXIT' => Exit,
       'NULL' => Null
     }
