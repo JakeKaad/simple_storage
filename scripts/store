@@ -2,4 +2,8 @@
 
 require_relative '../lib/simple_store'
 
+SimpleStore.configure do |c|
+  c.store = '../tmp/store.json'
+end
+
 SimpleStore::Engine.new.run

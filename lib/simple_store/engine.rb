@@ -1,15 +1,6 @@
 module SimpleStore
   class Engine
-    COMMANDS = [
-      'SET',
-      'GET',
-      'DELETE',
-      'COUNT',
-      'BEGIN',
-      'COMMIT',
-      'ROLLBACK',
-      'EXIT'
-    ]
+
 
     attr_reader :command
 
@@ -27,14 +18,14 @@ module SimpleStore
 
       loop do
         puts "What would you like to do?"
-        get_current_command
+        receive_input
 
-        unless valid_command?
+        unless command.valid?
           puts 'please select a valid command'
           next
         end
 
-        if exiting?
+        if command.exit?
           puts 'Thank you for using Simple Store'
           break
         end
@@ -43,12 +34,9 @@ module SimpleStore
 
     private
 
-    def valid_command?
-      COMMANDS.include?(command)
-    end
-
-    def get_current_command
-      @command = gets.chomp
+    def receive_input
+      input = gets.chomp
+      @command = SimpleStore::Commands.create(input)
     end
 
     def exiting?
