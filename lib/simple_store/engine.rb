@@ -5,6 +5,8 @@ module SimpleStore
     attr_reader :command
 
     def run
+      init_store
+
       system("clear")
       puts 'Welcome to Simple Store'
       puts 'SET <key> <value> // store the value for key'
@@ -29,6 +31,8 @@ module SimpleStore
           puts 'Thank you for using Simple Store'
           break
         end
+
+        command.process
       end
     end
 
@@ -41,6 +45,12 @@ module SimpleStore
 
     def exiting?
       command == 'EXIT'
+    end
+
+    def init_store
+      File.open(SimpleStore.store, "a+") do |file|
+        
+      end
     end
   end
 end

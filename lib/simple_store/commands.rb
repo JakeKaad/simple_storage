@@ -1,5 +1,8 @@
 require_relative 'commands/base'
 require_relative 'commands/set'
+require_relative 'commands/get'
+require_relative 'commands/delete'
+require_relative 'commands/count'
 require_relative 'commands/null'
 require_relative 'commands/exit'
 
@@ -8,9 +11,9 @@ module SimpleStore
   module Commands
     COMMANDS = {
       'SET' => Set,
-      'GET' => 'Get',
-      'DELETE' => 'Delete',
-      'COUNT' => 'Count',
+      'GET' => Get,
+      'DELETE' => Delete,
+      'COUNT' => Count,
       'BEGIN' => 'Begin',
       'COMMIT' => 'Commit',
       'ROLLBACK' => 'Rollback',

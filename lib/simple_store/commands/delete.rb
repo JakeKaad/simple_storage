@@ -1,9 +1,8 @@
 module SimpleStore
   module Commands
-    class Set < Base
+    class Delete < Base
       def process
-        store[key] = value
-        save
+        store.delete(key)
       end
     end
   end

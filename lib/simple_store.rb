@@ -6,7 +6,7 @@ require_relative 'simple_store/engine'
 
 module SimpleStore
   def self.store
-    config.store
+    configuration.store
   end
 
   def self.configuration

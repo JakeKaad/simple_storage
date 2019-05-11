@@ -10,10 +10,8 @@ module SimpleStore
       end
 
       def store
-        @store ||= read_store
+        @store ||= open_storage
       end
-
-
 
       def key
         @key ||= arguments.match(FIRST_WORD_REGEXP).to_s
@@ -29,6 +27,12 @@ module SimpleStore
 
       def valid?
         true
+      end
+
+      def save
+        File.open(SimpleStore.store, "w+") do |file|
+          file << store.to_json
+        end
       end
 
       private

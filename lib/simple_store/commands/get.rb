@@ -1,9 +1,8 @@
 module SimpleStore
   module Commands
-    class Set < Base
+    class Get < Base
       def process
-        store[key] = value
-        save
+        puts store[key]
       end
     end
   end
