@@ -9,14 +9,6 @@ module SimpleStore
         @arguments = arguments
       end
 
-      def exit?
-        false
-      end
-
-      def valid?
-        true
-      end
-
       private
 
       def key

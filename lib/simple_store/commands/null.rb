@@ -1,8 +1,8 @@
 module SimpleStore
   module Commands
     class Null < Base
-      def valid?
-        false
+      def process
+        puts 'please select a valid command'
       end
     end
   end

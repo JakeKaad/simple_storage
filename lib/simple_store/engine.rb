@@ -21,17 +21,6 @@ module SimpleStore
       loop do
         puts "What would you like to do?"
         receive_input
-
-        unless command.valid?
-          puts 'please select a valid command'
-          next
-        end
-
-        if command.exit?
-          puts 'Thank you for using Simple Store'
-          break
-        end
-
         command.process
       end
     end
