@@ -42,7 +42,12 @@ module SimpleStore
       end
 
       def stores
-        store.merge(transaction_store)
+        store.merge(
+          transaction_store.reject {|k, _| k == '__DELETES__'}
+        ).reject do |k, _|
+          transaction_store['__DELETES__'] &&
+            transaction_store['__DELETES__'].include?(k)
+        end
       end
 
       # TODO delegate storage logic to its own modulea

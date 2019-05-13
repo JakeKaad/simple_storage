@@ -49,7 +49,6 @@ module SimpleStore
 
     def init_store
       File.open(SimpleStore.store, "a+") do |file|
-        
       end
     end
   end
